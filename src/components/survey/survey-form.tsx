@@ -148,10 +148,10 @@ export function SurveyForm() {
           <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3">{PURCHASE_PURPOSES.map((purpose) => { const selected = draft.purchasePurposes.includes(purpose); return <label key={purpose}><input className="option-input" type="checkbox" checked={selected} onChange={() => togglePurpose(purpose)} /><span className="option-card"><span className="text-sm md:text-base">{purpose}</span>{selected && <Check className="ml-auto h-4 w-4" />}</span></label>; })}</div>
         </QuestionCard>
         <QuestionCard number={3} title={QUESTION_TITLES[2]} hint="选填" error={errors.responsibleCountry}>
-          <input className="text-field" value={draft.responsibleCountry ?? ""} onChange={(event) => update("responsibleCountry", event.target.value)} placeholder="例如：中国、德国、巴西" />
+          <input className="text-field" value={draft.responsibleCountry ?? ""} onChange={(event) => update("responsibleCountry", event.target.value)} placeholder="例如：波兰、摩洛哥、埃及" />
         </QuestionCard>
         <QuestionCard number={4} title={QUESTION_TITLES[3]} hint="选填" error={errors.productLine}>
-          <input className="text-field" value={draft.productLine ?? ""} onChange={(event) => update("productLine", event.target.value)} placeholder="例如：SUV、轿车、新能源、出口车型" />
+          <input className="text-field" value={draft.productLine ?? ""} onChange={(event) => update("productLine", event.target.value)} placeholder="例如：E0Y、T22等" />
         </QuestionCard>
         <QuestionCard number={5} title={QUESTION_TITLES[4]} error={errors.firstImpression}><ColorOptions name="firstImpression" value={draft.firstImpression as CarColor | undefined} onChange={(value) => update("firstImpression", value)} /></QuestionCard>
         <QuestionCard number={6} title={QUESTION_TITLES[5]} error={errors.purchaseChoice}><ColorOptions name="purchaseChoice" value={draft.purchaseChoice as CarColor | undefined} onChange={(value) => update("purchaseChoice", value)} /></QuestionCard>
