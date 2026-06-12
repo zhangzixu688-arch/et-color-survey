@@ -1,6 +1,7 @@
 import ExcelJS from "exceljs";
 import type { StoredSurveyResponse } from "@/lib/repository";
 import type { DashboardStats } from "@/lib/statistics";
+import { getColorDisplayName } from "@/lib/survey";
 
 const HEADER_FILL = "FF111827";
 const ACCENT_FILL = "FF2A6DF4";
@@ -27,7 +28,7 @@ export async function buildSurveyWorkbook(stats: DashboardStats, responses: Stor
   summary.addRow([]);
   summary.addRow(["综合排名", "颜色", "加权总分", "平均名次", "第一名次数"]);
   styleHeader(summary.getRow(4));
-  for (const item of stats.ranking) summary.addRow([item.rank, item.color, item.totalScore, item.averageRank, item.firstPlaceCount]);
+  for (const item of stats.ranking) summary.addRow([item.rank, getColorDisplayName(item.color), item.totalScore, item.averageRank, item.firstPlaceCount]);
 
   const metricLabels: Record<keyof DashboardStats["colorMetrics"], string> = {
     firstImpression: "第一眼喜欢",
@@ -40,7 +41,7 @@ export async function buildSurveyWorkbook(stats: DashboardStats, responses: Stor
     summary.addRow([]);
     const heading = summary.addRow([metricLabels[key], "人数", "占比"]);
     styleHeader(heading);
-    for (const value of values) summary.addRow([value.name, value.count, value.percentage / 100]);
+    for (const value of values) summary.addRow([getColorDisplayName(value.name), value.count, value.percentage / 100]);
   }
   summary.getColumn(1).width = 22;
   summary.getColumn(2).width = 16;
@@ -73,12 +74,12 @@ export async function buildSurveyWorkbook(stats: DashboardStats, responses: Stor
       purchasePurposes: response.purchasePurposes.join("、"),
       responsibleCountry: response.responsibleCountry,
       productLine: response.productLine,
-      firstImpression: response.firstImpression,
-      purchaseChoice: response.purchaseChoice,
-      ranking: response.ranking.map((color, index) => `${index + 1}.${color}`).join("  "),
-      premiumColor: response.premiumColor,
-      campaignColor: response.campaignColor,
-      resaleColor: response.resaleColor,
+      firstImpression: getColorDisplayName(response.firstImpression),
+      purchaseChoice: getColorDisplayName(response.purchaseChoice),
+      ranking: response.ranking.map((color, index) => `${index + 1}.${getColorDisplayName(color)}`).join("  "),
+      premiumColor: getColorDisplayName(response.premiumColor),
+      campaignColor: getColorDisplayName(response.campaignColor),
+      resaleColor: getColorDisplayName(response.resaleColor),
     });
   }
   detail.getColumn("createdAt").numFmt = "yyyy-mm-dd hh:mm:ss";

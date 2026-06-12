@@ -27,17 +27,22 @@ export const PURCHASE_PURPOSE_LABELS: Record<PurchasePurpose, string> = {
 
 export const COLOR_META: Record<CarColor, {
   slug: string;
+  display: string;
   hex: string;
   glow: string;
   english: string;
 }> = {
-  米色: { slug: "beige", hex: "#d8cbb7", glow: "rgba(224, 204, 174, .42)", english: "Silk Beige" },
-  白色: { slug: "white", hex: "#f4f5f2", glow: "rgba(218, 235, 255, .38)", english: "Pearl White" },
-  黑色: { slug: "black", hex: "#24272b", glow: "rgba(130, 158, 190, .32)", english: "Obsidian Black" },
-  红色: { slug: "red", hex: "#7f1932", glow: "rgba(211, 44, 82, .42)", english: "Crimson Red" },
-  蓝色: { slug: "blue", hex: "#173f78", glow: "rgba(47, 117, 225, .44)", english: "Celestial Blue" },
-  绿色: { slug: "green", hex: "#0e503e", glow: "rgba(26, 160, 114, .38)", english: "Forest Green" },
+  米色: { slug: "beige", display: "雅灰", hex: "#d8cbb7", glow: "rgba(224, 204, 174, .42)", english: "Elegant Grey" },
+  白色: { slug: "white", display: "白色", hex: "#f4f5f2", glow: "rgba(218, 235, 255, .38)", english: "Pearl White" },
+  黑色: { slug: "black", display: "黑色", hex: "#24272b", glow: "rgba(130, 158, 190, .32)", english: "Obsidian Black" },
+  红色: { slug: "red", display: "红色", hex: "#7f1932", glow: "rgba(211, 44, 82, .42)", english: "Crimson Red" },
+  蓝色: { slug: "blue", display: "蓝色", hex: "#173f78", glow: "rgba(47, 117, 225, .44)", english: "Celestial Blue" },
+  绿色: { slug: "green", display: "绿色", hex: "#0e503e", glow: "rgba(26, 160, 114, .38)", english: "Forest Green" },
 };
+
+export function getColorDisplayName(color: string) {
+  return color in COLOR_META ? COLOR_META[color as CarColor].display : color;
+}
 
 export const QUESTION_TITLES = [
   { zh: "您的年龄段是？", en: "What is your age group?" },

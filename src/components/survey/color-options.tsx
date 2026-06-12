@@ -6,14 +6,15 @@ export function ColorOptions({ name, value, onChange }: { name: string; value?: 
     <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-3">
       {CAR_COLORS.map((color) => {
         const selected = value === color;
+        const meta = COLOR_META[color];
         return (
           <label key={color}>
             <input className="option-input" type="radio" name={name} value={color} checked={selected} onChange={() => onChange(color)} />
             <span className="option-card">
-              <span className="h-3.5 w-3.5 shrink-0 rounded-full ring-4 ring-white/5" style={{ background: COLOR_META[color].hex }} />
+              <span className="h-3.5 w-3.5 shrink-0 rounded-full ring-4 ring-white/5" style={{ background: meta.hex }} />
               <span className="grid text-sm leading-tight md:text-base">
-                <span>{color}</span>
-                <span className="text-[11px] text-white/42 md:text-xs">{COLOR_META[color].english}</span>
+                <span>{meta.display}</span>
+                <span className="text-[11px] text-white/42 md:text-xs">{meta.english}</span>
               </span>
               <Check className={`ml-auto h-4 w-4 transition-opacity ${selected ? "opacity-100" : "opacity-0"}`} />
             </span>

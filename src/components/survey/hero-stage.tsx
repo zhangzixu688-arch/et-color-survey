@@ -58,7 +58,7 @@ export function HeroStage() {
           <div className="absolute bottom-7 left-5 z-30 md:bottom-10 md:left-12 lg:left-20">
             <AnimatePresence mode="wait">
               <motion.div key={activeColor} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-                <div className="flex items-center gap-3"><span className="h-2.5 w-2.5 rounded-full ring-4 ring-white/10" style={{ background: meta.hex }} /><span className="text-xl font-medium">{activeColor}</span></div>
+                <div className="flex items-center gap-3"><span className="h-2.5 w-2.5 rounded-full ring-4 ring-white/10" style={{ background: meta.hex }} /><span className="text-xl font-medium">{meta.display}</span></div>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[.28em] text-white/38">{meta.english} · 0{activeIndex + 1}</p>
               </motion.div>
             </AnimatePresence>

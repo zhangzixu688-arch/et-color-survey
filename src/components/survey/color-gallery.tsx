@@ -32,7 +32,7 @@ export function ColorGallery() {
                 <CarPicture color={color} className="h-full w-full object-contain drop-shadow-[0_18px_20px_rgba(0,0,0,.4)]" />
               </div>
               <div className="absolute inset-x-3 bottom-3 flex items-end justify-between md:inset-x-5 md:bottom-5">
-                <div><h3 className="text-sm font-medium md:text-lg">{color}</h3><p className="hidden font-mono text-[9px] uppercase tracking-[.2em] text-white/35 sm:block">{meta.english}</p></div>
+                <div><h3 className="text-sm font-medium md:text-lg">{meta.display}</h3><p className="hidden font-mono text-[9px] uppercase tracking-[.2em] text-white/35 sm:block">{meta.english}</p></div>
                 <span className="h-3 w-3 rounded-full ring-4 ring-white/8 md:h-4 md:w-4" style={{ background: meta.hex }} />
               </div>
             </motion.article>
