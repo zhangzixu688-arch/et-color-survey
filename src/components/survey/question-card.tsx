@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export function QuestionCard({ number, title, hint, error, children }: {
   number: number;
-  title: string;
-  hint?: string;
+  title: React.ReactNode;
+  hint?: React.ReactNode;
   error?: string;
   children: React.ReactNode;
 }) {

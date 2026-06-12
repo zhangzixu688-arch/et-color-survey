@@ -11,7 +11,10 @@ export function ColorOptions({ name, value, onChange }: { name: string; value?: 
             <input className="option-input" type="radio" name={name} value={color} checked={selected} onChange={() => onChange(color)} />
             <span className="option-card">
               <span className="h-3.5 w-3.5 shrink-0 rounded-full ring-4 ring-white/5" style={{ background: COLOR_META[color].hex }} />
-              <span className="text-sm md:text-base">{color}</span>
+              <span className="grid text-sm leading-tight md:text-base">
+                <span>{color}</span>
+                <span className="text-[11px] text-white/42 md:text-xs">{COLOR_META[color].english}</span>
+              </span>
               <Check className={`ml-auto h-4 w-4 transition-opacity ${selected ? "opacity-100" : "opacity-0"}`} />
             </span>
           </label>

@@ -8,6 +8,23 @@ export type CarColor = (typeof CAR_COLORS)[number];
 export type AgeGroup = (typeof AGE_GROUPS)[number];
 export type PurchasePurpose = (typeof PURCHASE_PURPOSES)[number];
 
+export const AGE_GROUP_LABELS: Record<AgeGroup, string> = {
+  "18-25岁": "18-25 years old",
+  "26-35岁": "26-35 years old",
+  "36-45岁": "36-45 years old",
+  "46-55岁": "46-55 years old",
+  "56岁以上": "56 years and above",
+};
+
+export const PURCHASE_PURPOSE_LABELS: Record<PurchasePurpose, string> = {
+  家用: "Family use",
+  通勤: "Commuting",
+  商务接待: "Business reception",
+  长途自驾: "Long-distance road trips",
+  个人代步: "Personal mobility",
+  其他: "Other",
+};
+
 export const COLOR_META: Record<CarColor, {
   slug: string;
   hex: string;
@@ -21,6 +38,19 @@ export const COLOR_META: Record<CarColor, {
   蓝色: { slug: "blue", hex: "#173f78", glow: "rgba(47, 117, 225, .44)", english: "Celestial Blue" },
   绿色: { slug: "green", hex: "#0e503e", glow: "rgba(26, 160, 114, .38)", english: "Forest Green" },
 };
+
+export const QUESTION_TITLES = [
+  { zh: "您的年龄段是？", en: "What is your age group?" },
+  { zh: "您主要购车用途是？", en: "What are your main vehicle use cases?" },
+  { zh: "以下6种颜色中，您第一眼最喜欢哪一个？", en: "Among the six colors, which one do you like most at first sight?" },
+  { zh: "如果实际购车，您最可能选择哪个颜色？", en: "If you were buying the vehicle, which color would you most likely choose?" },
+  { zh: "请按照实际购买意愿对6种颜色排序", en: "Please rank the six colors by purchase intention." },
+  { zh: "您认为哪个颜色最能体现该车型的“高级感”？", en: "Which color best conveys a premium feel for this model?" },
+  { zh: "您认为哪个颜色最适合作为宣传主视觉色？", en: "Which color is most suitable as the main campaign visual?" },
+  { zh: "您认为哪个颜色未来二手车更容易保值？", en: "Which color do you think will retain resale value better?" },
+  { zh: "您所负责的国家是？", en: "Which countries are you responsible for?" },
+  { zh: "您负责的产品线是？", en: "Which product lines are you responsible for?" },
+] as const;
 
 const carColorSchema = z.enum(CAR_COLORS);
 const optionalTextSchema = z.string().trim().max(80, "请控制在80个字符以内").optional().default("");
@@ -50,19 +80,6 @@ export type SurveyDraft = Partial<Omit<SurveySubmission, "purchasePurposes" | "r
   ranking: CarColor[];
   rankingTouched: boolean;
 };
-
-export const QUESTION_TITLES = [
-  "您的年龄段是？",
-  "您主要购车用途是？",
-  "您所负责的国家是？",
-  "您负责的产品线是？",
-  "以下6种颜色中，您第一眼最喜欢哪一个？",
-  "如果实际购车，您最可能选择哪个颜色？",
-  "请按照实际购买意愿对6种颜色排序",
-  "您认为哪个颜色最能体现该车型的“高级感”？",
-  "您认为哪个颜色最适合作为宣传主视觉色？",
-  "您认为哪个颜色未来二手车更容易保值？",
-] as const;
 
 export const EMPTY_DRAFT: SurveyDraft = {
   purchasePurposes: [],
