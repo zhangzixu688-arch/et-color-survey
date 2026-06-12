@@ -6,7 +6,7 @@
 
 - Next.js 16 App Router、React 19、TypeScript
 - Tailwind CSS 4、Framer Motion、Recharts
-- Prisma、SQLite、Zod
+- Prisma、PostgreSQL、Zod
 - dnd-kit 拖拽排序、ExcelJS 导出
 - Vitest、Playwright
 
@@ -28,15 +28,15 @@ npm run dev
 - 问卷页面：[http://localhost:3000](http://localhost:3000)
 - 数据看板：[http://localhost:3000/dashboard](http://localhost:3000/dashboard)
 
-开发环境未配置 `.env` 时也可以启动，默认看板口令为 `ex7-dashboard`。正式使用前必须配置以下变量：
+开发和正式环境都需要配置数据库连接。正式使用前必须配置以下变量：
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST/neondb?sslmode=require"
 ADMIN_PASSWORD="设置高强度管理员口令"
 SESSION_SECRET="至少32位随机字符串"
 ```
 
-`npm run dev` 会自动生成 Prisma Client，并幂等创建 SQLite 表和索引；`npm run start` 会在生产启动前执行同样的数据库准备。数据库文件默认位于 `prisma/dev.db`。
+`npm run dev` 会自动生成 Prisma Client，并通过 `prisma db push` 同步 PostgreSQL 表结构；`npm run start` 会在生产启动前执行同样的结构同步。
 
 ## 常用命令
 
@@ -59,7 +59,7 @@ npx playwright install chromium
 
 ## 数据与导出
 
-- 每条正式提交写入 SQLite，浏览器 `localStorage` 只保存未提交草稿。
+- 每条正式提交写入 PostgreSQL，浏览器 `localStorage` 只保存未提交草稿。
 - `clientSubmissionId` 唯一索引用于防止重复提交。
 - 排序题按第 1 名 6 分至第 6 名 1 分计算综合排名。
 - Excel 文件包含“汇总指标”和“原始问卷明细”两个工作表。
@@ -71,13 +71,13 @@ npx playwright install chromium
 
 ## 部署说明
 
-项目包含 `render.yaml`，可部署到 Render Node Web Service，并将 SQLite 保存到 `/data` 持久磁盘。首次部署需要在 Render 中填写 `ADMIN_PASSWORD` 和 `SESSION_SECRET`。
+项目包含 `render.yaml`，可部署到 Render 免费 Node Web Service；数据库建议使用 Neon PostgreSQL 免费计划。首次部署需要在 Render 中填写 `DATABASE_URL` 和 `ADMIN_PASSWORD`，`SESSION_SECRET` 由 Render 自动生成。
 
 正式部署步骤：
 
 1. 将项目推送到 GitHub、GitLab 或 Bitbucket。
 2. 登录 Render，选择 **New > Blueprint** 并连接该仓库。
-3. 确认创建带持久磁盘的 Web Service，并填写两个秘密环境变量。
-4. 部署完成后使用 Render 提供的长期 `onrender.com` 地址；绑定自有域名后可使用正式品牌域名。
-
-SQLite 不适合部署到没有持久文件系统的平台。若以后迁移到 Vercel，应先将 Prisma 数据源切换到 PostgreSQL。
+3. 在 Neon 创建或认领 PostgreSQL 数据库，复制 pooled `DATABASE_URL`。
+4. 在 Render Blueprint 页面填写 `DATABASE_URL` 和 `ADMIN_PASSWORD`。
+5. 确认创建免费 Web Service。
+6. 部署完成后使用 Render 提供的长期 `onrender.com` 地址；绑定自有域名后可使用正式品牌域名。

@@ -6,16 +6,16 @@
     "node": ">=20.9 <23"
   },
   "scripts": {
-    "predev": "prisma generate && tsx scripts/prepare-db.ts",
+    "predev": "prisma generate && prisma db push",
     "dev": "next dev",
     "prebuild": "prisma generate",
     "build": "next build",
-    "prestart": "tsx scripts/prepare-db.ts",
+    "prestart": "prisma db push --skip-generate",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "cross-env DATABASE_URL=file:./test.db ADMIN_PASSWORD=test-password SESSION_SECRET=test-session-secret-at-least-32-chars tsx scripts/prepare-db.ts && cross-env DATABASE_URL=file:./test.db ADMIN_PASSWORD=test-password SESSION_SECRET=test-session-secret-at-least-32-chars vitest run",
-    "test:watch": "cross-env DATABASE_URL=file:./test.db ADMIN_PASSWORD=test-password SESSION_SECRET=test-session-secret-at-least-32-chars vitest",
+    "test": "cross-env ADMIN_PASSWORD=test-password SESSION_SECRET=test-session-secret-at-least-32-chars vitest run",
+    "test:watch": "cross-env ADMIN_PASSWORD=test-password SESSION_SECRET=test-session-secret-at-least-32-chars vitest",
     "test:e2e": "playwright test",
     "db:studio": "prisma studio"
   },
