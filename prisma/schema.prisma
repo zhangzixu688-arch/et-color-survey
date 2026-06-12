@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model SurveyResponse {
+  id                 String   @id @default(cuid())
+  clientSubmissionId String   @unique
+  ageGroup           String
+  purchasePurposes   String
+  responsibleCountry String   @default("")
+  productLine        String   @default("")
+  firstImpression    String
+  purchaseChoice     String
+  ranking            String
+  premiumColor       String
+  campaignColor      String
+  resaleColor        String
+  createdAt          DateTime @default(now())
+
+  @@index([createdAt])
+}
