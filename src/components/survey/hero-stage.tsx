@@ -33,7 +33,7 @@ export function HeroStage() {
         <div aria-hidden className="soft-grid absolute inset-0 opacity-40" />
         <div className="relative mx-auto flex h-full w-full max-w-[1600px] flex-col px-5 pb-8 pt-24 md:px-12 lg:px-20">
           <motion.div style={{ y: textY }} className="relative z-20 max-w-3xl">
-            <p className="eyebrow mb-5">EX7 / Color Perception Study</p>
+            <p className="eyebrow mb-5">ET / Color Perception Study</p>
             <h1 className="display-title text-[clamp(3.5rem,8vw,8.8rem)]">色彩，决定<br /><span className="text-white/42">第一印象。</span></h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-white/58 md:text-lg">六种车身色彩，同一台车。跟随光线与视线，告诉我们哪一种更接近你的选择。</p>
           </motion.div>
