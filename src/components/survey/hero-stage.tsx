@@ -40,7 +40,7 @@ export function HeroStage() {
             <p className="mt-2 max-w-xl text-sm leading-7 text-white/42 md:text-base">Six body colors, one vehicle. Follow the light and your first instinct, then tell us which one feels closest to your choice.</p>
           </motion.div>
 
-          <motion.div style={{ scale: carScale, y: carY }} className="pointer-events-none absolute inset-x-[-12vw] bottom-[8vh] z-10 mx-auto h-[48vh] md:inset-x-[2vw] md:bottom-[-3vh] md:h-[58vh]">
+          <motion.div style={{ scale: carScale, y: carY }} className="pointer-events-none absolute left-[-2vw] right-[-22vw] bottom-[8vh] z-10 mx-auto h-[48vh] md:inset-x-[2vw] md:bottom-[-3vh] md:h-[58vh]">
             <AnimatePresence mode="sync">
               <motion.div
                 key={activeColor}
