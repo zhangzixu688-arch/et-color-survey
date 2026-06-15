@@ -8,9 +8,9 @@ export function ColorGallery() {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-5 py-28 md:px-10 md:py-40">
       <div className="mb-12 max-w-2xl md:mb-20">
-        <p className="eyebrow mb-4">The Six Expressions</p>
-        <h2 className="display-title text-5xl md:text-7xl">同一轮廓，<br /><span className="text-white/40">六种表达。</span></h2>
-        <p className="mt-4 text-lg text-white/62">One silhouette, six expressions.</p>
+        <p className="eyebrow mb-4">The Three Expressions</p>
+        <h2 className="display-title text-5xl md:text-7xl">同一轮廓，<br /><span className="text-white/40">三种表达。</span></h2>
+        <p className="mt-4 text-lg text-white/62">One silhouette, three expressions.</p>
         <p className="mt-6 leading-7 text-white/52">请在相同视角与光线下观察每一种车漆。接下来的问题，没有标准答案。</p>
         <p className="mt-2 leading-7 text-white/38">View each paint color from the same angle and lighting. There is no standard answer in the questions that follow.</p>
       </div>

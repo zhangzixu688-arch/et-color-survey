@@ -32,9 +32,7 @@ export async function buildSurveyWorkbook(stats: DashboardStats, responses: Stor
 
   const metricLabels: Record<keyof DashboardStats["colorMetrics"], string> = {
     firstImpression: "第一眼喜欢",
-    purchaseChoice: "实际购买",
     premiumColor: "高级感",
-    campaignColor: "宣传主视觉",
     resaleColor: "二手保值",
   };
   for (const [key, values] of Object.entries(stats.colorMetrics) as [keyof DashboardStats["colorMetrics"], DashboardStats["colorMetrics"][keyof DashboardStats["colorMetrics"]]][]) {
@@ -54,32 +52,32 @@ export async function buildSurveyWorkbook(stats: DashboardStats, responses: Stor
   detail.columns = [
     { header: "提交ID", key: "id", width: 28 },
     { header: "提交时间", key: "createdAt", width: 22 },
-    { header: "年龄段", key: "ageGroup", width: 14 },
-    { header: "主要购车用途", key: "purchasePurposes", width: 34 },
     { header: "所负责的国家", key: "responsibleCountry", width: 22 },
     { header: "负责的产品线", key: "productLine", width: 22 },
+    { header: "主要购车年龄段", key: "ageGroup", width: 18 },
+    { header: "主要购车用途", key: "purchasePurposes", width: 34 },
     { header: "第一眼最喜欢", key: "firstImpression", width: 16 },
-    { header: "实际购车选择", key: "purchaseChoice", width: 16 },
     { header: "购买意愿排序", key: "ranking", width: 42 },
     { header: "高级感颜色", key: "premiumColor", width: 16 },
-    { header: "宣传主视觉", key: "campaignColor", width: 16 },
     { header: "二手保值颜色", key: "resaleColor", width: 16 },
+    { header: "实际购车选择(旧)", key: "purchaseChoice", width: 18 },
+    { header: "宣传主视觉(旧)", key: "campaignColor", width: 18 },
   ];
   styleHeader(detail.getRow(1));
   for (const response of responses) {
     detail.addRow({
       id: response.clientSubmissionId,
       createdAt: response.createdAt,
-      ageGroup: response.ageGroup,
-      purchasePurposes: response.purchasePurposes.join("、"),
       responsibleCountry: response.responsibleCountry,
       productLine: response.productLine,
+      ageGroup: response.ageGroup,
+      purchasePurposes: response.purchasePurposes.join("、"),
       firstImpression: getColorDisplayName(response.firstImpression),
-      purchaseChoice: getColorDisplayName(response.purchaseChoice),
       ranking: response.ranking.map((color, index) => `${index + 1}.${getColorDisplayName(color)}`).join("  "),
       premiumColor: getColorDisplayName(response.premiumColor),
-      campaignColor: getColorDisplayName(response.campaignColor),
       resaleColor: getColorDisplayName(response.resaleColor),
+      purchaseChoice: response.purchaseChoice ? getColorDisplayName(response.purchaseChoice) : "",
+      campaignColor: response.campaignColor ? getColorDisplayName(response.campaignColor) : "",
     });
   }
   detail.getColumn("createdAt").numFmt = "yyyy-mm-dd hh:mm:ss";

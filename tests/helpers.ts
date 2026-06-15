@@ -9,11 +9,11 @@ export function submission(overrides: Partial<SurveySubmission> = {}): SurveySub
     responsibleCountry: "德国",
     productLine: "SUV",
     firstImpression: "蓝色",
-    purchaseChoice: "黑色",
-    ranking: ["黑色", "蓝色", "白色", "米色", "绿色", "红色"],
-    premiumColor: "黑色",
-    campaignColor: "红色",
-    resaleColor: "白色",
+    purchaseChoice: "",
+    ranking: ["红色", "蓝色", "绿色"],
+    premiumColor: "红色",
+    campaignColor: "",
+    resaleColor: "绿色",
     ...overrides,
   };
 }

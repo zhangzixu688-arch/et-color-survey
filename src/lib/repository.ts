@@ -1,17 +1,17 @@
 import type { SurveyResponse } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import type { CarColor, PurchasePurpose, SurveySubmission } from "@/lib/survey";
+import type { PurchasePurpose, SurveySubmission } from "@/lib/survey";
 
 export type StoredSurveyResponse = Omit<SurveyResponse, "purchasePurposes" | "ranking"> & {
   purchasePurposes: PurchasePurpose[];
-  ranking: CarColor[];
+  ranking: string[];
 };
 
 function parseStoredResponse(response: SurveyResponse): StoredSurveyResponse {
   return {
     ...response,
     purchasePurposes: JSON.parse(response.purchasePurposes) as PurchasePurpose[],
-    ranking: JSON.parse(response.ranking) as CarColor[],
+    ranking: JSON.parse(response.ranking) as string[],
   };
 }
 

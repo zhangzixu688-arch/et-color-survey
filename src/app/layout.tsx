@@ -8,7 +8,7 @@ const notoSansSc = Noto_Sans_SC({ variable: "--font-noto-sc", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: "车色偏好调研问卷 | ET Color Preference Survey",
-  description: "探索六种车身色彩，分享你的第一印象、购买偏好与价值判断。Explore six body colors and share your first impression, purchase preference, and value judgment.",
+  description: "探索三种车身色彩，分享你的第一印象、购买意愿与价值判断。Explore three body colors and share your first impression, purchase intention, and value judgment.",
 };
 
 export const viewport: Viewport = { themeColor: "#05070a", colorScheme: "dark" };

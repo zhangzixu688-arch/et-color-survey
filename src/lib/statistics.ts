@@ -2,7 +2,7 @@ import type { StoredSurveyResponse } from "@/lib/repository";
 import { AGE_GROUPS, CAR_COLORS, PURCHASE_PURPOSES, type CarColor } from "@/lib/survey";
 
 export type CountDatum = { name: string; count: number; percentage: number };
-export type ColorMetricKey = "firstImpression" | "purchaseChoice" | "premiumColor" | "campaignColor" | "resaleColor";
+export type ColorMetricKey = "firstImpression" | "premiumColor" | "resaleColor";
 export type RankingDatum = { color: CarColor; rank: number; totalScore: number; averageRank: number; firstPlaceCount: number };
 export type DashboardStats = {
   totalResponses: number;
@@ -26,7 +26,7 @@ function distribution(values: string[], choices: readonly string[], denominator 
 
 export function calculateDashboardStats(responses: StoredSurveyResponse[]): DashboardStats {
   const total = responses.length;
-  const colorMetricKeys: ColorMetricKey[] = ["firstImpression", "purchaseChoice", "premiumColor", "campaignColor", "resaleColor"];
+  const colorMetricKeys: ColorMetricKey[] = ["firstImpression", "premiumColor", "resaleColor"];
   const colorMetrics = Object.fromEntries(
     colorMetricKeys.map((key) => [key, distribution(responses.map((response) => response[key]), CAR_COLORS, total)]),
   ) as DashboardStats["colorMetrics"];
@@ -36,7 +36,8 @@ export function calculateDashboardStats(responses: StoredSurveyResponse[]): Dash
     let rankTotal = 0;
     let firstPlaceCount = 0;
     for (const response of responses) {
-      const index = response.ranking.indexOf(color);
+      const activeRanking = response.ranking.filter((item) => (CAR_COLORS as readonly string[]).includes(item));
+      const index = activeRanking.indexOf(color);
       if (index >= 0) {
         totalScore += CAR_COLORS.length - index;
         rankTotal += index + 1;

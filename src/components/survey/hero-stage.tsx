@@ -23,7 +23,7 @@ export function HeroStage() {
   const meta = COLOR_META[activeColor];
 
   return (
-    <section ref={sectionRef} className="relative z-10 h-[520vh]" aria-label="六种车身颜色动态展示">
+    <section ref={sectionRef} className="relative z-10 h-[520vh]" aria-label="三种车身颜色动态展示">
       <div className="sticky top-0 flex h-screen overflow-hidden">
         <motion.div
           aria-hidden
@@ -36,8 +36,8 @@ export function HeroStage() {
             <p className="eyebrow mb-5">ET / Color Perception Study</p>
             <h1 className="display-title text-[clamp(3.5rem,8vw,8.8rem)]">色彩，决定<br /><span className="text-white/42">第一印象。</span></h1>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-white/64 md:text-xl">Color shapes the first impression.</p>
-            <p className="mt-5 max-w-xl text-base leading-8 text-white/58 md:text-lg">六种车身色彩，同一台车。跟随光线与视线，告诉我们哪一种更接近你的选择。</p>
-            <p className="mt-2 max-w-xl text-sm leading-7 text-white/42 md:text-base">Six body colors, one vehicle. Follow the light and your first instinct, then tell us which one feels closest to your choice.</p>
+            <p className="mt-5 max-w-xl text-base leading-8 text-white/58 md:text-lg">三种车身色彩，同一台车。跟随光线与视线，告诉我们哪一种更接近你的选择。</p>
+            <p className="mt-2 max-w-xl text-sm leading-7 text-white/42 md:text-base">Three body colors, one vehicle. Follow the light and your first instinct, then tell us which one feels closest to your choice.</p>
           </motion.div>
 
           <motion.div style={{ scale: carScale, y: carY }} className="pointer-events-none absolute left-[-2vw] right-[-22vw] bottom-[8vh] z-10 mx-auto h-[48vh] md:inset-x-[2vw] md:bottom-[-3vh] md:h-[58vh]">
